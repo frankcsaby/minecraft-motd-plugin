@@ -1,0 +1,1 @@
+# minecraft_motd_plugin
