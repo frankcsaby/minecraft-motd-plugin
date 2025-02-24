@@ -1,0 +1,6 @@
+name: WelcomePlugin
+version: '1.0-SNAPSHOT'
+main: frankcsaby.minecraft_motd.Minecraft_motd
+api-version: '1.21'
+description: A simple plugin that welcomes players to the server.
+author: Csaba Frank
