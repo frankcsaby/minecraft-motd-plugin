@@ -22,4 +22,11 @@ After that, when you are ready with the message, and you saved it, you have to c
 
 **AND BASICALLY YOU ARE READY TO GO, ENJOY! :)**
 
+# More from me:
+
+**I'm planning to make a Maintenance plugin too, if I do some updates on my server, I can
+easily set-up for the server status.**
+**The other plugin is an efficiency plugin, that preloads and pregenerate the chunks, to
+make the game run smooth.**
+
 *Developed by: Csaba Frank*

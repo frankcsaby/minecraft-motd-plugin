@@ -10,6 +10,8 @@ public final class Minecraft_motd extends JavaPlugin implements  Listener{
 
     @Override
     public void onEnable() {
+
+        saveDefaultConfig();
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(this, this);
         getLogger().info("WelcomePlugin has been enabled!");
@@ -23,8 +25,24 @@ public final class Minecraft_motd extends JavaPlugin implements  Listener{
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event){
-        // send a welcome message to the player
-        event.getPlayer().sendMessage(ChatColor.GREEN + "Welcome to the server, " + event.getPlayer().getName() + "! If you want to keep your stuff in your inventory, please type /gamerule keepInventory true, in EVERY world. (Overworld, Nether, End!)");
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        // Load the welcome message from config.yml
+        String welcomeMessage = getConfig().getString("welcome-message", "Welcome to the server, {player}!");
+        boolean broadcastToAll = getConfig().getBoolean("broadcast-to-all", false);
+
+        // Replace {player} with the player's name
+        welcomeMessage = welcomeMessage.replace("{player}", event.getPlayer().getName());
+
+        // Translate color codes (e.g., &a -> green)
+        welcomeMessage = ChatColor.translateAlternateColorCodes('&', welcomeMessage);
+
+        // Send the message
+        if (broadcastToAll) {
+            // Broadcast to all players
+            getServer().broadcastMessage(welcomeMessage);
+        } else {
+            // Send only to the joining player
+            event.getPlayer().sendMessage(welcomeMessage);
+        }
     }
 }
